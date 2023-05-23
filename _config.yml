@@ -15,10 +15,10 @@ remote_theme           : "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "en-US"
-title                    : "Site Title"
-title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
+locale                   : "ko-KR"
+title                    : "eeaaomk98의 사이트"
+title_separator          : "|"
+subtitle                 : "positive"
 name                     : "eeaaomk98"
 description              : "eeaaomk98의 블로그입니다."
 url                      : "https://eeaaomk98.github.io/"
