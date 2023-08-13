@@ -1,7 +1,7 @@
 ---
 published: true
 layout: single
-title: "스프링 핵심원리 - 기본편(객체지향 원지 적용)"
+title: "스프링 핵심원리 - 기본편(객체지향 원리 적용)"
 categories: spring
 author_profile: false
 typora-root-url: ../
@@ -50,6 +50,8 @@ public class RateDiscountPolicy implements DiscountPolicy{
 
 추가한 할인 정책을 애플리케이션에 적용해보자. 할인 정책을 변경하려면 클라이언트인 `OrderServiceImpl`코드를 수정해야 한다.
 
+`OrderServiceImpl`
+
 ```java
 public class OrderServiceImpl implements OrderService {
   //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
@@ -58,6 +60,8 @@ public class OrderServiceImpl implements OrderService {
 ```
 
 하지만 이 코드에는 문제점이 있다. 
+
+<br>
 
 ![image-20230810144201884](/images/2023-08-10-Spring_principle_3/image-20230810144201884.png)
 
@@ -149,15 +153,15 @@ public class MemberServiceImpl implements MemberService {
         
      public MemberServiceImpl(MemberRepository memberRepository) {
          this.memberRepository = memberRepository;
-		 }
+     }
 
      public void join(Member member) {
          memberRepository.save(member);
-		 }
+     }
 
      public Member findMember(Long memberId) {
          return memberRepository.findById(memberId);
-		 } 
+     } 
 }
 
 ```
