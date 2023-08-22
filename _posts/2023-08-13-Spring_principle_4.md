@@ -1,7 +1,7 @@
 ---
 published: true
 layout: single
-title: "스프링 핵심원리 - 기본편(객체지향 원리 적용)"
+title: "스프링 핵심원리 - 기본편(스프링 컨테이너와 스프링 빈)"
 categories: spring
 author_profile: false
 typora-root-url: ../
