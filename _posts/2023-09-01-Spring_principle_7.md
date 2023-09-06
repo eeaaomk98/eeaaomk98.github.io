@@ -51,15 +51,15 @@ typora-root-url: ../
 ```java
 @Component
 public class OrderServiceImpl implements OrderService {
-		private final MemberRepository memberRepository;
- 		private final DiscountPolicy discountPolicy;
+	private final MemberRepository memberRepository;
+	private final DiscountPolicy discountPolicy;
  
   // 생성자가 하나만 있으므로 @Autowired 생략 가능.
   @Autowired
   public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
- 			this.memberRepository = memberRepository;
- 			this.discountPolicy = discountPolicy;
-	 }
+		this.memberRepository = memberRepository;
+		this.discountPolicy = discountPolicy;
+	}
 }
 ```
 
@@ -76,18 +76,18 @@ public class OrderServiceImpl implements OrderService {
 @Component
 public class OrderServiceImpl implements OrderService {
   
-		private MemberRepository memberRepository;
-		private DiscountPolicy discountPolicy;
+	private MemberRepository memberRepository;
+	private DiscountPolicy discountPolicy;
   
-		@Autowired
-		public void setMemberRepository(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-		}
+	@Autowired
+  public void setMemberRepository(MemberRepository memberRepository) {
+	this.memberRepository = memberRepository;
+	}
   
-		@Autowired
-		public void setDiscountPolicy(DiscountPolicy discountPolicy) {
-		this.discountPolicy = discountPolicy;
-		}
+	@Autowired
+	public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+	this.discountPolicy = discountPolicy;
+	}
 }
 ```
 
@@ -116,14 +116,14 @@ public class OrderServiceImpl implements OrderService {
 @Component
 public class OrderServiceImpl implements OrderService {
   
-		private MemberRepository memberRepository;
-		private DiscountPolicy discountPolicy;
+	private MemberRepository memberRepository;
+	private DiscountPolicy discountPolicy;
   
-		@Autowired
-		public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-		this.memberRepository = memberRepository;
-		this.discountPolicy = discountPolicy;
-		}
+	@Autowired
+	public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+	this.memberRepository = memberRepository;
+	this.discountPolicy = discountPolicy;
+	}
 }
 ```
 
@@ -163,19 +163,19 @@ public class OrderServiceImpl implements OrderService {
 //호출 안됨
 @Autowired(required = false)
 public void setNoBean1(Member member) {
-		System.out.println("setNoBean1 = " + member);
+	System.out.println("setNoBean1 = " + member);
 }
 
 //null 호출
 @Autowired
 public void setNoBean2(@Nullable Member member) {
-		System.out.println("setNoBean2 = " + member);
+	System.out.println("setNoBean2 = " + member);
 }
 
 //Optional.empty 호출
 @Autowired(required = false)
 public void setNoBean3(Optional<Member> member) {
-		System.out.println("setNoBean3 = " + member);
+	System.out.println("setNoBean3 = " + member);
 }
 ```
 
@@ -200,14 +200,14 @@ setNoBean3 = Optional.empty
 @Component
 public class OrderServiceImpl implements OrderService {
   
-		private final MemberRepository memberRepository;
-		private final DiscountPolicy discountPolicy;
+	private final MemberRepository memberRepository;
+	private final DiscountPolicy discountPolicy;
   
-		@Autowired
-		public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-		this.memberRepository = memberRepository;
-		this.discountPolicy = discountPolicy;
-		}
+	@Autowired
+	public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+	this.memberRepository = memberRepository;
+	this.discountPolicy = discountPolicy;
+	}
 }
 ```
 
@@ -223,8 +223,8 @@ public class OrderServiceImpl implements OrderService {
 @Component
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
-		private final MemberRepository memberRepository;
-		private final DiscountPolicy discountPolicy;		
+	private final MemberRepository memberRepository;
+	private final DiscountPolicy discountPolicy;		
 }
 ```
 
@@ -300,8 +300,8 @@ public class FixDiscountPolicy implements DiscountPolicy {}
 @Autowired
 public OrderServiceImpl(MemberRepository memberRepository,@Qualifier("mainDiscountPolicy") DiscountPolicy
 discountPolicy) {
-		this.memberRepository = memberRepository;
-		this.discountPolicy = discountPolicy;
+	this.memberRepository = memberRepository;
+	this.discountPolicy = discountPolicy;
 }
 ```
 
@@ -330,7 +330,7 @@ public class FixDiscountPolicy implements DiscountPolicy {}
 
 **우선순위**
 
-`@Primary`는 기본값 처럼 동작하는 것이도, `@Qualifier`는 매우 상세하게 동작한다. 스프링은 자동보다는 수동이, 넓은 범위의 선택권 보다는 좁은 범위의 선택권이 우선 순위가 높다. 따라서 `@Qualifier`가 우선권이 높다.
+`@Primary`는 기본값 처럼 동작하는 것이고, `@Qualifier`는 매우 상세하게 동작한다. 스프링은 자동보다는 수동이, 넓은 범위의 선택권 보다는 좁은 범위의 선택권이 우선 순위가 높다. 따라서 `@Qualifier`가 우선권이 높다.
 
 
 
