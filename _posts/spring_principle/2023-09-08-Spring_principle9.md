@@ -61,7 +61,7 @@ public class HelloBean {}
 @Scope("prototype")
 @Bean
 PrototypeBean HelloBean() {
- return new HelloBean();
+	return new HelloBean();
 }
 ```
 
@@ -152,10 +152,10 @@ x프로토타입 스코프를 스프링 컨테이너에 조회하면 스프링 �
 @Autowired
 private ObjectProvider<PrototypeBean> prototypeBeanProvider;
 public int logic() {
- PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
- prototypeBean.addCount();
- int count = prototypeBean.getCount();
- return count;
+	PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
+	prototypeBean.addCount();
+	int count = prototypeBean.getCount();
+	return count;
 }
 ```
 
@@ -181,10 +181,10 @@ public int logic() {
 @Autowired
 private Provider<PrototypeBean> provider;
 public int logic() {
- PrototypeBean prototypeBean = provider.get();
- prototypeBean.addCount();
- int count = prototypeBean.getCount();
- return count;
+	PrototypeBean prototypeBean = provider.get();
+	prototypeBean.addCount();
+	int count = prototypeBean.getCount();
+	return count;
 }
 ```
 
@@ -279,28 +279,28 @@ package hello.core.common;
 @Scope(value = "request")
 public class MyLogger {
   
- private String uuid;
- private String requestURL;
+	private String uuid;
+	private String requestURL;
   
- public void setRequestURL(String requestURL) {
- this.requestURL = requestURL;
- }
+	public void setRequestURL(String requestURL) {
+	this.requestURL = requestURL;
+}
   
- public void log(String message) {
- System.out.println("[" + uuid + "]" + "[" + requestURL + "] " +
+	public void log(String message) {
+	System.out.println("[" + uuid + "]" + "[" + requestURL + "] " +
 message);
- }
+	}
   
- @PostConstruct
- public void init() {
- uuid = UUID.randomUUID().toString();
- System.out.println("[" + uuid + "] request scope bean create:" + this);
- }
+	@PostConstruct
+	public void init() {
+	uuid = UUID.randomUUID().toString();
+	System.out.println("[" + uuid + "] request scope bean create:" + this);
+	}
   
- @PreDestroy
- public void close() {
- System.out.println("[" + uuid + "] request scope bean close:" + this);
- }
+	@PreDestroy
+	public void close() {
+	System.out.println("[" + uuid + "] request scope bean close:" + this);
+	}
 }
 로그를 출력하기 위한
 ```
@@ -325,19 +325,19 @@ package hello.core.web;
 @RequiredArgsConstructor
 public class LogDemoController {
   
- private final LogDemoService logDemoService;
- private final MyLogger myLogger;
+	private final LogDemoService logDemoService;
+	private final MyLogger myLogger;
   
- @RequestMapping("log-demo")
- @ResponseBody
- public String logDemo(HttpServletRequest request) {
- String requestURL = request.getRequestURL().toString();
- myLogger.setRequestURL(requestURL);
+	@RequestMapping("log-demo")
+	@ResponseBody
+	public String logDemo(HttpServletRequest request) {
+	String requestURL = request.getRequestURL().toString();
+	myLogger.setRequestURL(requestURL);
    
- myLogger.log("controller test");
- logDemoService.logic("testId");
- return "OK";
- }
+	myLogger.log("controller test");
+	logDemoService.logic("testId");
+	return "OK";
+	}
 }
 ```
 
@@ -360,11 +360,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LogDemoService {
   
- private final MyLogger myLogger;
+	private final MyLogger myLogger;
   
- public void logic(String id) {
- myLogger.log("service id = " + id);
- }
+	public void logic(String id) {
+	myLogger.log("service id = " + id);
+	}
 }
 ```
 
@@ -398,20 +398,20 @@ package hello.core.web;
 @RequiredArgsConstructor
 public class LogDemoController {
   
- private final LogDemoService logDemoService;
- private final ObjectProvider<MyLogger> myLoggerProvider;
+	private final LogDemoService logDemoService;
+	private final ObjectProvider<MyLogger> myLoggerProvider;
   
- @RequestMapping("log-demo")
- @ResponseBody
- public String logDemo(HttpServletRequest request) {
- String requestURL = request.getRequestURL().toString();
- MyLogger myLogger = myLoggerProvider.getObject();
- myLogger.setRequestURL(requestURL);
+	@RequestMapping("log-demo")
+	@ResponseBody
+	public String logDemo(HttpServletRequest request) {
+	String requestURL = request.getRequestURL().toString();
+	MyLogger myLogger = myLoggerProvider.getObject();
+ 	myLogger.setRequestURL(requestURL);
  
- myLogger.log("controller test");
- logDemoService.logic("testId");
- return "OK";
- }
+	myLogger.log("controller test");
+	logDemoService.logic("testId");
+	return "OK";
+	}
 }
 ```
 
@@ -426,12 +426,12 @@ package hello.core.logdemo;
 @RequiredArgsConstructor
 public class LogDemoService {
   
- private final ObjectProvider<MyLogger> myLoggerProvider;
+	private final ObjectProvider<MyLogger> myLoggerProvider;
   
- public void logic(String id) {
- MyLogger myLogger = myLoggerProvider.getObject();
- myLogger.log("service id = " + id);
- }
+	public void logic(String id) {
+	MyLogger myLogger = myLoggerProvider.getObject();
+	myLogger.log("service id = " + id);
+	}
 }
 ```
 
